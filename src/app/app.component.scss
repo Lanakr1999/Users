@@ -1,0 +1,15 @@
+.container-for-users{
+  width: 100%;
+  height: 15%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+  border: 2px solid silver;
+  box-shadow: 0 0 3px 3px;
+}
+
+.container{
+  width: 22%;
+  height: 25%;
+}

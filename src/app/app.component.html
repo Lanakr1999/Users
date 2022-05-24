@@ -1,0 +1,21 @@
+
+
+<div class="container-for-users">
+
+  <app-user-item *ngFor="let user of users"
+                  [user]="user"
+                  (click)="getUserInfo(user.id)" class="container"></app-user-item>
+
+</div>
+
+<div class="user-info-container" *ngIf="userInfo">
+  <app-user-info [userInfo]="userInfo"></app-user-info>
+  <button (click)="getPosts(userInfo.id)">Show posts</button>
+
+  <div class="user-posts-container">
+    <app-user-post *ngFor="let post of posts"
+                    [post]="post">
+    </app-user-post>
+  </div>
+
+</div>
