@@ -1,11 +1,14 @@
 .todos-container{
   display: flex;
-  width: 33.3%;
-  margin-left: 33.3%;
+  width: 30%;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
   border: 1px solid black;
   box-shadow: 0 0 2px 2px;
   margin-top: 5px;
   margin-bottom: 5px;
+  padding: 5px;
 
   input{
     background-color: black;
