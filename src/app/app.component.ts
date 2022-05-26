@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IPost, IUser } from './shared/model/user-app.model';
+import { IPost, ITodos, IUser } from './shared/model/user-app.model';
 import { UserService } from './shared/service/user.service';
 
 @Component({
@@ -11,7 +11,11 @@ export class AppComponent implements OnInit{
 
   users: IUser[] = [];
   userInfo!: IUser;
-  posts: IPost[] = []
+  posts: IPost[] = [];
+  todos: ITodos[] = [];
+  isPostsActive: boolean = false;
+  isTodosActive: boolean = false;
+  isAlbumsActive: boolean = false;
 
   constructor(private userService: UserService) {
   }
@@ -34,9 +38,35 @@ export class AppComponent implements OnInit{
   }
 
   getPosts(id: number): void{
-    this.userService.getPostsByUserId(id).subscribe((posts: IPost[]) => {
-      this.posts = posts;
-    })
+    if(!this.isPostsActive) {
+      this.userService.getPostsByUserId(id).subscribe((posts: IPost[]) => {
+        this.posts = posts;
+        this.isPostsActive = true;
+        this.isTodosActive = false;
+        this.isAlbumsActive = false;
+      });
+    }
+    else {
+      this.isPostsActive = false;
+      this.isTodosActive = false;
+      this.isAlbumsActive = false;
+    }
+  }
+
+  getTodos(id: number){
+    if(!this.isTodosActive) {
+      this.userService.getTodosByUserId(id).subscribe((todos: ITodos[]) => {
+        this.todos = todos;
+        this.isTodosActive = true;
+        this.isPostsActive = false;
+        this.isAlbumsActive = false;
+      });
+    }
+    else{
+      this.isPostsActive = false;
+      this.isTodosActive = false;
+      this.isAlbumsActive = false;
+    }
   }
 
 }

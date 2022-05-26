@@ -1,0 +1,4 @@
+<div class="todos-container">
+  <p [class.completed]="todo.completed">{{todo.title}}</p>
+  <input type="checkbox" [checked]="todo.completed" (change)="toogleTodo()">
+</div>

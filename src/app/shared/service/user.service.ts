@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IUser, IPost } from '../model/user-app.model';
+import { IUser, IPost, IComment, ITodos } from '../model/user-app.model';
 import { Observable } from 'rxjs';
 
 const URL_API = 'https://jsonplaceholder.typicode.com';
@@ -20,5 +20,11 @@ export class UserService {
   }
   getPostsByUserId(id: number): Observable<IPost[]>{
     return this.http.get<IPost[]>(`${URL_API}/users/${id}/posts`);
+  }
+  getCommentsByPostId(id: number): Observable<IComment[]> {
+    return this.http.get<IComment[]>(`${URL_API}/post/${id}/comments`);
+  }
+  getTodosByUserId(id: number): Observable<ITodos[]> {
+    return this.http.get<ITodos[]>(`${URL_API}/users/${id}/todos`)
   }
 }

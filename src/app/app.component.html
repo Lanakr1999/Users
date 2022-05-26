@@ -10,12 +10,22 @@
 
 <div class="user-info-container" *ngIf="userInfo">
   <app-user-info [userInfo]="userInfo"></app-user-info>
+
   <button (click)="getPosts(userInfo.id)">Show posts</button>
 
-  <div class="user-posts-container">
+  <button (click)="getTodos(userInfo.id)">Show todos</button>
+  <button (click)="getTodos(userInfo.id)">Show albums</button>
+
+  <div class="user-posts-container" *ngIf="isPostsActive">
     <app-user-post *ngFor="let post of posts"
                     [post]="post">
     </app-user-post>
+  </div>
+
+  <div class="user-todos-container" *ngIf="isTodosActive">
+    <app-post-todos *ngFor="let todo of todos"
+                    [todo]="todo">
+    </app-post-todos>
   </div>
 
 </div>

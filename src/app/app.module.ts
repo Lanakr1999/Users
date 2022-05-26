@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 import { UserItemComponent } from './components/user-item/user-item.component';
 import { UserInfoComponent } from './components/user-info/user-info.component';
 import { UserPostComponent } from './components/user-post/user-post.component';
+import { PostCommentsComponent } from './components/user-post/post-comments/post-comments.component';
+import { PostTodosComponent } from './components/post-todos/post-todos.component';
 
 
 
@@ -16,6 +18,8 @@ import { UserPostComponent } from './components/user-post/user-post.component';
     UserItemComponent,
     UserInfoComponent,
     UserPostComponent,
+    PostCommentsComponent,
+    PostTodosComponent,
   ],
   imports: [
     BrowserModule,

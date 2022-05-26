@@ -1,4 +1,19 @@
 <div>
-  <h2>{{post.title}}</h2>
-  <p>{{post.body}}</p>
+
+  <div class="post-container">
+    <h2>{{post.title}}</h2>
+    <p>{{post.body}}</p>
+
+    <button (click)="getComments()">Show comments</button>
+
+    <div *ngIf="isCommentVisible">
+
+    <app-post-comments *ngFor="let comment of comments"
+                        [comment]="comment">
+    </app-post-comments>
+
+    </div>
+
+  </div>
+
 </div>

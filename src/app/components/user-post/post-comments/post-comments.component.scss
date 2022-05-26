@@ -1,0 +1,27 @@
+.comments-container{
+  display: flex;
+  width: 90%;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  flex-direction: column;
+  border: 1px solid silver;
+  box-shadow: 0 0 1px 1px;
+}
+
+.name{
+  font-weight: bolder;
+  text-transform: uppercase;
+  margin-left: 5px;
+  padding: 5px;
+}
+
+.email{
+  font-weight: bolder;
+  margin-left: 5px;
+  padding: 5px;
+}
+
+.main{
+  padding: 7px;
+}
