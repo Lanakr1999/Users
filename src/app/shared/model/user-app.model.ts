@@ -43,3 +43,17 @@ export interface ITodos{
   title: string,
   completed: boolean
 }
+
+export interface IAlbums{
+  userId: number,
+  id: number,
+  title: string
+}
+
+export interface  IPhotos{
+  albumId: number,
+  id: number,
+  title: string,
+  url: string,
+  thumbnailUrl: string
+}

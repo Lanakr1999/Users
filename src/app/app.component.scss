@@ -1,3 +1,38 @@
+header{
+  width: 100%;
+  height: 7%;
+  background: black;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  img{
+    height: 90%;
+    margin-left: 10%;
+  }
+  p{
+    color: silver;
+    margin-left: 2%;
+    font-size: 25px;
+    font-weight: bolder;
+  }
+}
+
+
+.users-list{
+  background: black;
+  width: 100%;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  span{
+    color: silver;
+    text-transform: uppercase;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+  }
+}
+
 .container-for-users{
   width: 100%;
   height: 15%;
@@ -7,6 +42,7 @@
   align-items: center;
   border: 2px solid silver;
   box-shadow: 0 0 3px 3px;
+  transition: all 150ms ease-in-out;
 }
 
 .container{
@@ -23,6 +59,14 @@
 }
 
 .user-todos-container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.users-albums-container{
   width: 100%;
   height: 100%;
   display: flex;

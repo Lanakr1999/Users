@@ -1,18 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { IPost, ITodos, IUser } from './shared/model/user-app.model';
+import {IAlbums, IPost, ITodos, IUser} from './shared/model/user-app.model';
 import { UserService } from './shared/service/user.service';
+import { ShowUsersAnim } from "./animations/show-users-anim";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  animations: [ShowUsersAnim]
 })
 export class AppComponent implements OnInit{
 
+  animationState: string = 'in';
   users: IUser[] = [];
   userInfo!: IUser;
   posts: IPost[] = [];
   todos: ITodos[] = [];
+  albums: IAlbums[] = [];
+  isUsersListActive: boolean = true;
   isPostsActive: boolean = false;
   isTodosActive: boolean = false;
   isAlbumsActive: boolean = false;
@@ -22,6 +27,18 @@ export class AppComponent implements OnInit{
 
   ngOnInit(){
     this.getUsers();
+  }
+
+  showUsers(divName: string) {
+    this.animationState = this.animationState === 'out' ? 'in' : 'out';
+    this.isUsersListActive = !this.isUsersListActive;
+  }
+
+
+  closeActive() {
+    this.isPostsActive = true;
+    this.isTodosActive = false;
+    this.isAlbumsActive = false;
   }
 
   getUsers(): void {
@@ -47,9 +64,7 @@ export class AppComponent implements OnInit{
       });
     }
     else {
-      this.isPostsActive = false;
-      this.isTodosActive = false;
-      this.isAlbumsActive = false;
+      this.closeActive();
     }
   }
 
@@ -63,9 +78,21 @@ export class AppComponent implements OnInit{
       });
     }
     else{
-      this.isPostsActive = false;
-      this.isTodosActive = false;
-      this.isAlbumsActive = false;
+      this.closeActive();
+    }
+  }
+
+  getAlbums(id: number) {
+    if(!this.isAlbumsActive) {
+      this.userService.getAlbumsByUserId(id).subscribe((albums: IAlbums[]) => {
+        this.albums = albums;
+        this.isPostsActive = false;
+        this.isTodosActive = false;
+        this.isAlbumsActive = true;
+      });
+    }
+    else {
+      this.closeActive();
     }
   }
 

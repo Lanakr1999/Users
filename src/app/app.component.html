@@ -1,11 +1,19 @@
+<header>
+  <img src="https://angular.io/assets/images/logos/angular/angular_whiteTransparent.svg" alt="">
+  <p>JSON API</p>
+</header>
 
-
-<div class="container-for-users">
+<div [@showUsersAnim]="animationState" class="container-for-users">
 
   <app-user-item *ngFor="let user of users"
                   [user]="user"
-                  (click)="getUserInfo(user.id)" class="container"></app-user-item>
+                  (click)="getUserInfo(user.id)" class="container">
+  </app-user-item>
 
+</div>
+
+<div class="users-list" (click)="showUsers('divA')">
+  <span>Show Users</span>
 </div>
 
 <div class="user-info-container" *ngIf="userInfo">
@@ -14,7 +22,7 @@
   <button (click)="getPosts(userInfo.id)">Show posts</button>
 
   <button (click)="getTodos(userInfo.id)">Show todos</button>
-  <button (click)="getTodos(userInfo.id)">Show albums</button>
+  <button (click)="getAlbums(userInfo.id)">Show albums</button>
 
   <div class="user-posts-container" *ngIf="isPostsActive">
     <app-user-post *ngFor="let post of posts"
@@ -26,6 +34,13 @@
     <app-post-todos *ngFor="let todo of todos"
                     [todo]="todo">
     </app-post-todos>
+  </div>
+
+  <div class="users-albums-container" *ngIf="isAlbumsActive">
+    <app-user-albums *ngFor="let album of albums"
+                      [album]="album">
+
+    </app-user-albums>
   </div>
 
 </div>
