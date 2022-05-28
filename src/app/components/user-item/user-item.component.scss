@@ -12,4 +12,8 @@
     background-color: lavender;
     cursor: pointer;
   }
+  &:active{
+    transition: all 50ms ease-in-out;
+    background-color: silver;
+  }
 }

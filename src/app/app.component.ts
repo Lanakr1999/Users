@@ -1,26 +1,32 @@
 import { Component, OnInit } from '@angular/core';
 import {IAlbums, IPost, ITodos, IUser} from './shared/model/user-app.model';
 import { UserService } from './shared/service/user.service';
-import { ShowUsersAnim } from "./animations/show-users-anim";
+import {ChangeButtonAnim, ShowUsersAnim} from "./animations/show-users-anim";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  animations: [ShowUsersAnim]
+  animations: [ShowUsersAnim, ChangeButtonAnim]
 })
 export class AppComponent implements OnInit{
 
-  animationState: string = 'in';
+  animationState: string = '';
+  animationStateButton: string = 'show';
+  animationStateTextColor: string = 'silver';
+
+  buttonName: string = 'show users';
   users: IUser[] = [];
   userInfo!: IUser;
   posts: IPost[] = [];
   todos: ITodos[] = [];
   albums: IAlbums[] = [];
-  isUsersListActive: boolean = true;
+
+  isUsersListActive: boolean = false;
   isPostsActive: boolean = false;
   isTodosActive: boolean = false;
   isAlbumsActive: boolean = false;
+
 
   constructor(private userService: UserService) {
   }
@@ -29,14 +35,17 @@ export class AppComponent implements OnInit{
     this.getUsers();
   }
 
-  showUsers(divName: string) {
-    this.animationState = this.animationState === 'out' ? 'in' : 'out';
+  showUsers() {
     this.isUsersListActive = !this.isUsersListActive;
+    this.buttonName = this.buttonName === 'show users' ? 'close users' : 'show users';
+    this.animationState = this.animationState === 'out' ? '' : 'out';
+    this.animationStateButton = this.animationStateButton === 'close' ? 'show' : 'close';
+    this.animationStateTextColor = this.animationStateTextColor === 'black' ? 'silver' : 'black';
   }
 
 
   closeActive() {
-    this.isPostsActive = true;
+    this.isPostsActive = false;
     this.isTodosActive = false;
     this.isAlbumsActive = false;
   }
@@ -95,5 +104,4 @@ export class AppComponent implements OnInit{
       this.closeActive();
     }
   }
-
 }

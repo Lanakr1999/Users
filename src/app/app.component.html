@@ -3,7 +3,7 @@
   <p>JSON API</p>
 </header>
 
-<div [@showUsersAnim]="animationState" class="container-for-users">
+<div [@showUsersAnim]="animationState" class="container-for-users" *ngIf="isUsersListActive">
 
   <app-user-item *ngFor="let user of users"
                   [user]="user"
@@ -12,17 +12,18 @@
 
 </div>
 
-<div class="users-list" (click)="showUsers('divA')">
-  <span>Show Users</span>
+<div [@changeButtonAnim]="animationStateButton" class="users-list">
+  <span [@changeTextColor]="animationStateTextColor" (click)="showUsers()">{{buttonName}}</span>
 </div>
 
 <div class="user-info-container" *ngIf="userInfo">
   <app-user-info [userInfo]="userInfo"></app-user-info>
 
-  <button (click)="getPosts(userInfo.id)">Show posts</button>
-
-  <button (click)="getTodos(userInfo.id)">Show todos</button>
-  <button (click)="getAlbums(userInfo.id)">Show albums</button>
+  <div class="buttons-container">
+    <button class="info-buttons" (click)="getPosts(userInfo.id)">Show posts</button>
+    <button class="info-buttons" (click)="getTodos(userInfo.id)">Show todos</button>
+    <button class="info-buttons" (click)="getAlbums(userInfo.id)">Show albums</button>
+  </div>
 
   <div class="user-posts-container" *ngIf="isPostsActive">
     <app-user-post *ngFor="let post of posts"
@@ -39,7 +40,6 @@
   <div class="users-albums-container" *ngIf="isAlbumsActive">
     <app-user-albums *ngFor="let album of albums"
                       [album]="album">
-
     </app-user-albums>
   </div>
 
